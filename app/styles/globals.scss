@@ -1,10 +1,5 @@
 @tailwind base;
-@tailwind components;
 
-@import "./animation.scss";
-@import "./window.scss";
-
-@tailwind utilities;
 
 @layer base {
   :root {
@@ -74,6 +69,8 @@
 
 @layer base {
   * {
+    @apply box-content;
+    // 这个很关键，不加这个UI就变难看了（shadcn默认没有），ref: https://tailwindcss.com/docs/box-sizing#including-borders-and-padding
     @apply border-border;
   }
 
@@ -82,6 +79,13 @@
   }
 }
 
+
+@tailwind components;
+
+@tailwind utilities;
+
+@import "./animation.scss";
+@import "./window.scss";
 
 @mixin light {
   --theme: light;
@@ -440,3 +444,5 @@ pre {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+
