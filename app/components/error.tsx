@@ -1,3 +1,5 @@
+"use client"; // Error components must be Client Components, ref: https://nextjs.org/docs/app/api-reference/file-conventions/error
+
 import React from "react";
 import { IconButton } from "./button";
 import GithubIcon from "../icons/github.svg";
