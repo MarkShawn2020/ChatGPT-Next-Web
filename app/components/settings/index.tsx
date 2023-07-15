@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { ReactNode, useState } from "react";
 import { ErrorBoundary } from "@/app/components/error";
 import Locale from "@/app/locales";
 import styles from "@/app/components/settings/settings.module.scss";
@@ -18,8 +18,11 @@ import { SetSync } from "@/app/components/settings/set-sync";
 import { SetReset } from "@/app/components/settings/set-reset";
 import { useEscHome } from "@/app/hooks/use-esc-home";
 import { CloseBackToHomeIcon } from "@/app/icons/close-back-to-home";
+import { Switch } from "@/app/components/ui/switch";
+import { Label } from "@/app/components/ui/label";
 
 interface ISettingUnit {
+  isAdvanced?: boolean;
   title: string;
   content: ReactNode;
 }
@@ -42,10 +45,12 @@ export const settings: ISettingUnit[] = [
     content: <SetMask />,
   },
   {
+    isAdvanced: true,
     title: Locale.Settings.Model,
     content: <SetModel />,
   },
   {
+    isAdvanced: true,
     title: Locale.Settings.API,
     content: <SetAPI />,
   },
@@ -61,6 +66,8 @@ export const settings: ISettingUnit[] = [
 
 export function Settings() {
   useEscHome(); // 在设置页，按下 ESC 即退回主页
+
+  const [advanceMode, setAdvanceMode] = useState(false);
 
   return (
     <ErrorBoundary>
@@ -86,13 +93,24 @@ export function Settings() {
 
       {/* content begin */}
       <div className={styles["settings"]}>
+        <div className="flex justify-end items-center space-x-2">
+          <Label htmlFor="advance-mode">启用高级模式</Label>
+          <Switch
+            id="advance-mode"
+            checked={advanceMode}
+            onCheckedChange={setAdvanceMode}
+          />
+        </div>
+
         <Accordion className="w-full" type={"multiple"}>
-          {settings.map((setting) => (
-            <AccordionItem value={setting.title} key={setting.title}>
-              <AccordionTrigger>{setting.title}</AccordionTrigger>
-              <AccordionContent>{setting.content}</AccordionContent>
-            </AccordionItem>
-          ))}
+          {settings
+            .filter((setting) => advanceMode || !setting.isAdvanced)
+            .map((setting) => (
+              <AccordionItem value={setting.title} key={setting.title}>
+                <AccordionTrigger>{setting.title}</AccordionTrigger>
+                <AccordionContent>{setting.content}</AccordionContent>
+              </AccordionItem>
+            ))}
         </Accordion>
       </div>
       {/*	content end*/}
