@@ -55,10 +55,12 @@ export const settings: ISettingUnit[] = [
     content: <SetAPI />,
   },
   {
+    isAdvanced: true,
     title: Locale.Settings.Sync,
     content: <SetSync />,
   },
   {
+    isAdvanced: true,
     title: Locale.Settings.Reset,
     content: <SetReset />,
   },
