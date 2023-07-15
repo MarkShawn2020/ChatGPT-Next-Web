@@ -1,8 +1,7 @@
 "use client";
 
-require("../polyfill");
-
-import { useState, useEffect } from "react";
+import { Settings as Settings1 } from "@/app/components/settings";
+import { useEffect, useState } from "react";
 
 import styles from "./home.module.scss";
 
@@ -19,8 +18,8 @@ import { getLang } from "../locales";
 
 import {
   HashRouter as Router,
-  Routes,
   Route,
+  Routes,
   useLocation,
 } from "react-router-dom";
 import { SideBar } from "./sidebar";
@@ -29,6 +28,8 @@ import { AuthPage } from "./auth";
 import { getClientConfig } from "../config/client";
 import { api } from "../client/api";
 import { useAccessStore } from "../store";
+
+require("../polyfill");
 
 export function Loading(props: { noLogo?: boolean }) {
   return (
@@ -39,7 +40,7 @@ export function Loading(props: { noLogo?: boolean }) {
   );
 }
 
-const Settings = dynamic(async () => (await import("./settings")).Settings, {
+const Settings = dynamic(async () => Settings1, {
   loading: () => <Loading noLogo />,
 });
 
