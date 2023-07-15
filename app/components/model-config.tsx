@@ -3,6 +3,7 @@ import { ModalConfigValidator, ModelConfig, useAppConfig } from "../store";
 import Locale from "../locales";
 import { InputRange } from "./input-range";
 import { ListItem, Select } from "./ui-lib";
+import { Switch } from "@/app/components/ui/switch";
 
 export function ModelConfigList(props: {
   modelConfig: ModelConfig;
@@ -134,16 +135,16 @@ export function ModelConfigList(props: {
         title={Locale.Settings.InjectSystemPrompts.Title}
         subTitle={Locale.Settings.InjectSystemPrompts.SubTitle}
       >
-        <input
-          type="checkbox"
+        <Switch
           checked={props.modelConfig.enableInjectSystemPrompts}
-          onChange={(e) =>
+          onCheckedChange={() => {
             props.updateConfig(
               (config) =>
-                (config.enableInjectSystemPrompts = e.currentTarget.checked),
-            )
-          }
-        ></input>
+                (config.enableInjectSystemPrompts =
+                  !config.enableInjectSystemPrompts),
+            );
+          }}
+        />
       </ListItem>
 
       <ListItem
@@ -198,15 +199,14 @@ export function ModelConfigList(props: {
         ></input>
       </ListItem>
       <ListItem title={Locale.Memory.Title} subTitle={Locale.Memory.Send}>
-        <input
-          type="checkbox"
+        <Switch
           checked={props.modelConfig.sendMemory}
-          onChange={(e) =>
+          onCheckedChange={() => {
             props.updateConfig(
-              (config) => (config.sendMemory = e.currentTarget.checked),
-            )
-          }
-        ></input>
+              (config) => (config.sendMemory = !config.sendMemory),
+            );
+          }}
+        />
       </ListItem>
     </>
   );

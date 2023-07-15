@@ -13,6 +13,7 @@ import ClearIcon from "@/app/icons/clear.svg";
 import EyeIcon from "@/app/icons/eye.svg";
 import CopyIcon from "@/app/icons/copy.svg";
 import { copyToClipboard } from "@/app/utils";
+import { Switch } from "@/app/components/ui/switch";
 
 export const SetConversation = () => {
   const config = useAppConfig();
@@ -67,32 +68,30 @@ export const SetConversation = () => {
           title={Locale.Settings.SendPreviewBubble.Title}
           subTitle={Locale.Settings.SendPreviewBubble.SubTitle}
         >
-          <input
-            type="checkbox"
+          <Switch
             checked={config.sendPreviewBubble}
-            onChange={(e) =>
+            onCheckedChange={() => {
               config.update(
                 (config) =>
-                  (config.sendPreviewBubble = e.currentTarget.checked),
-              )
-            }
-          ></input>
+                  (config.sendPreviewBubble = !config.sendPreviewBubble),
+              );
+            }}
+          />
         </ListItem>
 
         <ListItem
           title={Locale.Settings.Prompt.Disable.Title}
           subTitle={Locale.Settings.Prompt.Disable.SubTitle}
         >
-          <input
-            type="checkbox"
+          <Switch
             checked={config.disablePromptHint}
-            onChange={(e) =>
+            onCheckedChange={() => {
               config.update(
                 (config) =>
-                  (config.disablePromptHint = e.currentTarget.checked),
-              )
-            }
-          ></input>
+                  (config.disablePromptHint = !config.disablePromptHint),
+              );
+            }}
+          />
         </ListItem>
 
         <ListItem

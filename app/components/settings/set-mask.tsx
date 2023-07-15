@@ -1,6 +1,7 @@
 import { useAppConfig } from "@/app/store";
 import { List, ListItem } from "@/app/components/ui-lib";
 import Locale from "@/app/locales";
+import { Switch } from "@/app/components/ui/switch";
 
 export const SetMask = () => {
   const config = useAppConfig();
@@ -10,31 +11,30 @@ export const SetMask = () => {
         title={Locale.Settings.Mask.Splash.Title}
         subTitle={Locale.Settings.Mask.Splash.SubTitle}
       >
-        <input
-          type="checkbox"
+        <Switch
           checked={!config.dontShowMaskSplashScreen}
-          onChange={(e) =>
+          onCheckedChange={() => {
             config.update(
               (config) =>
-                (config.dontShowMaskSplashScreen = !e.currentTarget.checked),
-            )
-          }
-        ></input>
+                (config.dontShowMaskSplashScreen =
+                  !config.dontShowMaskSplashScreen),
+            );
+          }}
+        />
       </ListItem>
 
       <ListItem
         title={Locale.Settings.Mask.Builtin.Title}
         subTitle={Locale.Settings.Mask.Builtin.SubTitle}
       >
-        <input
-          type="checkbox"
+        <Switch
           checked={config.hideBuiltinMasks}
-          onChange={(e) =>
+          onCheckedChange={() => {
             config.update(
-              (config) => (config.hideBuiltinMasks = e.currentTarget.checked),
-            )
-          }
-        ></input>
+              (config) => (config.hideBuiltinMasks = !config.hideBuiltinMasks),
+            );
+          }}
+        />
       </ListItem>
     </List>
   );
