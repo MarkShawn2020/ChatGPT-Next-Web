@@ -404,6 +404,7 @@ export function MaskPage() {
               autoFocus
               onInput={(e) => onSearch(e.currentTarget.value)}
             />
+
             <Select
               className={styles["mask-filter-lang"]}
               value={filterLang ?? Locale.Settings.Lang.All}
