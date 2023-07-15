@@ -118,6 +118,15 @@ const en: LocaleType = {
   Settings: {
     Title: "Settings",
     SubTitle: "All Settings",
+
+    System: "System",
+    User: "User",
+    Conversation: "Conversation",
+    Model: "Model",
+    API: "API",
+    Sync: "Sync",
+    Reset: "Reset",
+
     Danger: {
       Reset: {
         Title: "Reset All Settings",
@@ -166,6 +175,8 @@ const en: LocaleType = {
       SubTitle: "Preview markdown in bubble",
     },
     Mask: {
+      Title: "Mask",
+
       Splash: {
         Title: "Mask Splash Screen",
         SubTitle: "Show a mask splash screen before starting new chat",
@@ -229,7 +240,6 @@ const en: LocaleType = {
       Title: "Custom Models",
       SubTitle: "Add extra model options, separate by comma",
     },
-    Model: "Model",
     Temperature: {
       Title: "Temperature",
       SubTitle: "A larger value makes the more random output",

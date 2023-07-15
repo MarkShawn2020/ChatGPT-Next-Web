@@ -116,6 +116,14 @@ const cn = {
     Title: "设置",
     SubTitle: "所有设置选项",
 
+    System: "系统",
+    User: "用户",
+    Conversation: "会话",
+    Model: "模型",
+    API: "API",
+    Sync: "同步",
+    Reset: "重置",
+
     Danger: {
       Reset: {
         Title: "重置所有设置",
@@ -164,6 +172,8 @@ const cn = {
       SubTitle: "在预览气泡中预览 Markdown 内容",
     },
     Mask: {
+      Title: "面具",
+
       Splash: {
         Title: "面具启动页",
         SubTitle: "新建聊天时，展示面具启动页",
@@ -227,7 +237,6 @@ const cn = {
       Title: "自定义模型名",
       SubTitle: "增加自定义模型可选项，使用英文逗号隔开",
     },
-    Model: "模型 (model)",
     Temperature: {
       Title: "随机性 (temperature)",
       SubTitle: "值越大，回复越随机",

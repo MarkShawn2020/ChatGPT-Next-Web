@@ -421,7 +421,7 @@ export function Settings() {
       <div className={styles["settings"]}>
         <Accordion className="w-full" type={"multiple"}>
           <AccordionItem value={"system"}>
-            <AccordionTrigger>系统</AccordionTrigger>
+            <AccordionTrigger>{Locale.Settings.System}</AccordionTrigger>
             <AccordionContent>
               <List>
                 <ListItem
@@ -488,7 +488,9 @@ export function Settings() {
           </AccordionItem>
 
           <AccordionItem value={"user"}>
-            <AccordionTrigger value="user">用户</AccordionTrigger>
+            <AccordionTrigger value="user">
+              {Locale.Settings.User}
+            </AccordionTrigger>
             <AccordionContent>
               <List>
                 <ListItem title={Locale.Settings.Avatar}>
@@ -517,7 +519,7 @@ export function Settings() {
           </AccordionItem>
 
           <AccordionItem value={"chat"}>
-            <AccordionTrigger>会话</AccordionTrigger>
+            <AccordionTrigger>{Locale.Settings.Conversation}</AccordionTrigger>
             <AccordionContent>
               <List>
                 <ListItem title={Locale.Settings.SendKey}>
@@ -610,8 +612,9 @@ export function Settings() {
           </AccordionItem>
 
           <AccordionItem value={"mask"}>
-            <AccordionTrigger value="mask">面具</AccordionTrigger>
-
+            <AccordionTrigger value="mask">
+              {Locale.Settings.Mask.Title}
+            </AccordionTrigger>
             <AccordionContent>
               <List>
                 <ListItem
@@ -651,7 +654,9 @@ export function Settings() {
           </AccordionItem>
 
           <AccordionItem value={"model"}>
-            <AccordionTrigger value="model">模型</AccordionTrigger>
+            <AccordionTrigger value="model">
+              {Locale.Settings.Model}
+            </AccordionTrigger>
             <AccordionContent>
               <List>
                 <ModelConfigList
@@ -669,7 +674,9 @@ export function Settings() {
           </AccordionItem>
 
           <AccordionItem value={"api"}>
-            <AccordionTrigger value="api">API</AccordionTrigger>
+            <AccordionTrigger value="api">
+              {Locale.Settings.API}
+            </AccordionTrigger>
             <AccordionContent>
               <List>
                 {showAccessCode ? (
@@ -768,14 +775,18 @@ export function Settings() {
           </AccordionItem>
 
           <AccordionItem value={"sync"}>
-            <AccordionTrigger value="sync">同步</AccordionTrigger>
+            <AccordionTrigger value="sync">
+              {Locale.Settings.Sync}
+            </AccordionTrigger>
             <AccordionContent>
               <SyncItems />
             </AccordionContent>
           </AccordionItem>
 
           <AccordionItem value={"reset"}>
-            <AccordionTrigger value={"reset"}>重置</AccordionTrigger>
+            <AccordionTrigger value={"reset"}>
+              {Locale.Settings.Reset}
+            </AccordionTrigger>
             <AccordionContent>
               <DangerItems />
             </AccordionContent>
