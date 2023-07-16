@@ -448,7 +448,11 @@ pre {
 
 @layer components {
   .border-in-light {
-    border: var(--border-in-light)
+    border: var(--border-in-light);
+
+    &:hover {
+      border-color: var(--primary);
+    }
   }
 }
 

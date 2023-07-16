@@ -31,6 +31,7 @@ const cn = {
       Delete: "删除",
       Edit: "编辑",
       Theme: "切换主题",
+      Language: "切换语言",
     },
     Commands: {
       new: "新建聊天",

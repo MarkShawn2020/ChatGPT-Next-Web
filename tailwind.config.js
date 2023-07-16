@@ -22,7 +22,7 @@ module.exports = {
 				75: '.75',
 			},
 			colors: {
-				// border: "hsl(var(--border))",
+				border: "hsl(var(--border))",
 				black: "var(--black)",
 				input: "hsl(var(--input))",
 				ring: "hsl(var(--ring))",

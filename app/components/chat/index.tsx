@@ -48,8 +48,10 @@ import { Markdown } from "@/app/components/chat/markdown";
 import { ClearContextDivider } from "@/app/components/chat/clear-context-divider";
 import SendWhiteIcon from "@/app/icons/send-white.svg";
 import { ExportMessageModal } from "@/app/components/exporter";
-import { SwitchTheme } from "@/app/components/theme";
+import { SwitchTheme } from "@/app/components/switchers/switch-theme";
 import { Separator } from "@/app/components/ui/separator";
+import { SwitchLang } from "@/app/components/switchers/switch-lang";
+import { SwitcherScenarioType } from "@/app/components/switchers/ds";
 
 export function Chat() {
   type RenderMessage = ChatMessage & { preview?: boolean };
@@ -466,6 +468,8 @@ export function Chat() {
           </div>
 
           <Separator orientation={"vertical"} className={"bg-muted"} />
+
+          <SwitchLang scenario={SwitcherScenarioType.windowAction} />
 
           <div className="window-action-button">
             <SwitchTheme />
