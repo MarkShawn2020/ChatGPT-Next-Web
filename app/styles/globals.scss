@@ -1,6 +1,5 @@
 @tailwind base;
 
-
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -68,10 +67,17 @@
 }
 
 @layer base {
+
   * {
     @apply box-content;
     // 这个很关键，不加这个UI就变难看了（shadcn默认没有），ref: https://tailwindcss.com/docs/box-sizing#including-borders-and-padding
-    @apply border-border;
+    //@apply box-border;
+
+    font-size: 14px;
+  }
+
+  select {
+    @apply box-border;
   }
 
   body {
@@ -79,10 +85,6 @@
   }
 }
 
-
-@tailwind components;
-
-@tailwind utilities;
 
 @import "./animation.scss";
 @import "./window.scss";
@@ -224,6 +226,14 @@ select {
   background-color: var(--white);
   color: var(--black);
   text-align: center;
+
+  option {
+    font-weight: normal;
+    display: block;
+    white-space: nowrap;
+    min-height: 1.2em;
+    padding: 0px 2px 1px;
+  }
 }
 
 label {
@@ -446,3 +456,6 @@ pre {
 }
 
 
+@tailwind components;
+
+@tailwind utilities;

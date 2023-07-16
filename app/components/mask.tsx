@@ -405,6 +405,7 @@ export function MaskPage() {
               onInput={(e) => onSearch(e.currentTarget.value)}
             />
 
+            {/* todo: set font-size undefined */}
             <Select
               className={styles["mask-filter-lang"]}
               value={filterLang ?? Locale.Settings.Lang.All}
