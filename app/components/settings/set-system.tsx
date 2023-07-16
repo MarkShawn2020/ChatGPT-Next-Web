@@ -10,7 +10,7 @@ import Locale, {
 } from "@/app/locales";
 import LoadingIcon from "@/app/icons/three-dots.svg";
 import Link from "next/link";
-import { IconButton } from "@/app/components/button";
+import { IconButton } from "@/app/components/ui-custom/button";
 import ResetIcon from "@/app/icons/reload.svg";
 import { useEffect, useState } from "react";
 

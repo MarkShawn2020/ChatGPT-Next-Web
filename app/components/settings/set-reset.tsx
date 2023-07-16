@@ -1,7 +1,7 @@
 import { useAppConfig, useChatStore } from "@/app/store";
 import { List, ListItem, showConfirm } from "@/app/components/ui-lib";
 import Locale from "@/app/locales";
-import { IconButton } from "@/app/components/button";
+import { IconButton } from "@/app/components/ui-custom/button";
 
 export function SetReset() {
   const chatStore = useChatStore();

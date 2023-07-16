@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Path, SlotID } from "../constant";
-import { IconButton } from "./button";
+import { IconButton } from "./ui-custom/button";
 import { EmojiAvatar } from "./emoji";
 import styles from "./new-chat.module.scss";
 

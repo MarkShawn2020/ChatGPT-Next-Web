@@ -3,7 +3,7 @@ import AutoIcon from "@/app/icons/auto.svg";
 import LightIcon from "@/app/icons/light.svg";
 import DarkIcon from "@/app/icons/dark.svg";
 import React from "react";
-import { IconButton } from "@/app/components/button";
+import { IconButton } from "@/app/components/ui-custom/button";
 import Locale from "@/app/locales";
 import { useTheme } from "next-themes";
 

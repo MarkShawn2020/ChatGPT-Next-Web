@@ -3,7 +3,7 @@ import { Prompt, SearchService, usePromptStore } from "@/app/store/prompt";
 import { Input, List, ListItem, Modal, Select } from "@/app/components/ui-lib";
 import Locale from "@/app/locales";
 import { InputRange } from "@/app/components/input-range";
-import { IconButton } from "@/app/components/button";
+import { IconButton } from "@/app/components/ui-custom/button";
 import EditIcon from "@/app/icons/edit.svg";
 import { useEffect, useState } from "react";
 import styles from "@/app/components/settings/settings.module.scss";

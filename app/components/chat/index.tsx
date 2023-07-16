@@ -25,7 +25,7 @@ import { showPrompt, showToast } from "@/app/components/ui-lib";
 import Locale from "@/app/locales";
 import { getClientConfig } from "@/app/config/client";
 import styles from "@/app/components/chat/chat.module.scss";
-import { IconButton } from "@/app/components/button";
+import { IconButton } from "@/app/components/ui-custom/button";
 import ReturnIcon from "@/app/icons/return.svg";
 import RenameIcon from "@/app/icons/rename.svg";
 import EditIcon from "@/app/icons/rename.svg";

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useAppConfig, useChatStore } from "../../../store";
 import { Updater } from "../../../typings/typing";
-import { IconButton } from "../../button";
+import { IconButton } from "../../ui-custom/button";
 import { Avatar } from "../../emoji";
 import { MaskAvatar } from "../../mask";
 import Locale from "../../../locales";

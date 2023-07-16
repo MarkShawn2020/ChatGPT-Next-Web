@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { IconButton } from "@/app/components/button";
+import { IconButton } from "@/app/components/ui-custom/button";
 import CloseIcon from "@/app/icons/close.svg";
 import { Path } from "@/app/constant";
 

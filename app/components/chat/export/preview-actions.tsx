@@ -4,7 +4,7 @@ import { copyToClipboard } from "@/app/lib/utils_";
 import { showToast } from "@/app/components/ui-lib";
 import { prettyObject } from "@/app/utils/format";
 import styles from "@/app/components/chat/export/exporter.module.scss";
-import { IconButton } from "@/app/components/button";
+import { IconButton } from "@/app/components/ui-custom/button";
 import Locale from "@/app/locales";
 import CopyIcon from "@/app/icons/copy.svg";
 import DownloadIcon from "@/app/icons/download.svg";

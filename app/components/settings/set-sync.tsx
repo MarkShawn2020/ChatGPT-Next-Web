@@ -1,6 +1,6 @@
 import { useSyncStore } from "@/app/store/sync";
 import { List, ListItem } from "@/app/components/ui-lib";
-import { IconButton } from "@/app/components/button";
+import { IconButton } from "@/app/components/ui-custom/button";
 import ResetIcon from "@/app/icons/reload.svg";
 import Locale from "@/app/locales";
 

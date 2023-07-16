@@ -1,3 +1,5 @@
+const plugin = require('tailwindcss/plugin')
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
 	darkMode: ["class"],
@@ -20,6 +22,9 @@ module.exports = {
 				25: '.25',
 				50: '.5',
 				75: '.75',
+			},
+			boxShadow: {
+				card: "var(--card-shadow)"
 			},
 			colors: {
 				border: "hsl(var(--border))",
@@ -78,5 +83,14 @@ module.exports = {
 			},
 		},
 	},
-	plugins: [require("tailwindcss-animate")],
+	plugins: [
+		require("tailwindcss-animate"),
+		
+		plugin(function ({addVariant}) {
+			addVariant('not-first', '&:not(first-child)') // ref: https://www.reddit.com/r/tailwindcss/comments/s3wka1/comment/hspmjxo/?utm_source=share&utm_medium=web2x&context=3
+			addVariant('not-last', '&:not(last-child)')
+			
+			addVariant("hocus", ["&:hover", "&:focus"])
+		})
+	],
 }

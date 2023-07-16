@@ -458,6 +458,18 @@ pre {
       border-color: var(--primary);
     }
   }
+
+  .flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .inline-flex-center {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
 
 @tailwind utilities;

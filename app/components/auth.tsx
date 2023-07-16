@@ -1,5 +1,5 @@
 import styles from "./auth.module.scss";
-import { IconButton } from "./button";
+import { IconButton } from "./ui-custom/button";
 
 import { useNavigate } from "react-router-dom";
 import { Path } from "../constant";

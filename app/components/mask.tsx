@@ -1,4 +1,4 @@
-import { IconButton } from "./button";
+import { IconButton } from "./ui-custom/button";
 import { ErrorBoundary } from "./error";
 
 import styles from "./mask.module.scss";

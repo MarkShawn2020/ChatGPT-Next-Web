@@ -3,7 +3,7 @@ import { useMaskStore } from "@/app/store/mask";
 import { useNavigate } from "react-router-dom";
 import { ListItem, Modal, showConfirm } from "@/app/components/ui-lib";
 import Locale from "@/app/locales";
-import { IconButton } from "@/app/components/button";
+import { IconButton } from "@/app/components/ui-custom/button";
 import ResetIcon from "@/app/icons/reload.svg";
 import CopyIcon from "@/app/icons/copy.svg";
 import { Path } from "@/app/constant";

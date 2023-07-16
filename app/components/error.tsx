@@ -1,7 +1,7 @@
 "use client"; // Error components must be Client Components, ref: https://nextjs.org/docs/app/api-reference/file-conventions/error
 
 import React from "react";
-import { IconButton } from "./button";
+import { IconButton } from "./ui-custom/button";
 import GithubIcon from "../icons/github.svg";
 import ResetIcon from "../icons/reload.svg";
 import { ISSUE_URL } from "../constant";
