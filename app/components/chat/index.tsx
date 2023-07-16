@@ -1,19 +1,3 @@
-import { useDebouncedCallback } from "use-debounce";
-import React, { Fragment, useEffect, useMemo, useRef, useState } from "react";
-
-import SendWhiteIcon from "../icons/send-white.svg";
-import RenameIcon from "../icons/rename.svg";
-import EditIcon from "../icons/rename.svg";
-import ExportIcon from "../icons/share.svg";
-import ReturnIcon from "../icons/return.svg";
-import CopyIcon from "../icons/copy.svg";
-import MaxIcon from "../icons/max.svg";
-import MinIcon from "../icons/min.svg";
-import ResetIcon from "../icons/reload.svg";
-import DeleteIcon from "../icons/clear.svg";
-import PinIcon from "../icons/pin.svg";
-import StopIcon from "../icons/pause.svg";
-
 import {
   BOT_HELLO,
   ChatMessage,
@@ -22,38 +6,50 @@ import {
   useAccessStore,
   useAppConfig,
   useChatStore,
-} from "../store";
-
+} from "@/app/store";
+import React, { Fragment, useEffect, useMemo, useRef, useState } from "react";
+import { useSubmitHandler } from "@/app/hooks/use-submit-handler";
+import { useScrollToBottom } from "@/app/hooks/use-scroll";
 import {
   autoGrowTextArea,
   copyToClipboard,
   selectOrCopy,
   useMobileScreen,
-} from "../utils";
-
-import { ChatControllerPool } from "../client/controller";
-import { usePromptStore } from "../store/prompt";
-import Locale from "../locales";
-
-import { IconButton } from "./button";
-import styles from "./chat.module.scss";
-
-import { showPrompt, showToast } from "./ui-lib";
+} from "@/app/utils";
 import { useLocation, useNavigate } from "react-router-dom";
-import { LAST_INPUT_KEY, Path, REQUEST_TIMEOUT_MS } from "../constant";
-import { Avatar } from "./emoji";
-import { MaskAvatar } from "./mask";
-import { ChatCommandPrefix, useChatCommand, useCommand } from "../command";
-import { prettyObject } from "../utils/format";
-import { ExportMessageModal } from "./exporter";
-import { getClientConfig } from "../config/client";
-import { Markdown } from "@/app/components/chat/markdown";
-import { useScrollToBottom } from "@/app/hooks/use-scroll";
-import { ChatAction, ChatActions } from "@/app/components/chat/action";
+import { usePromptStore } from "@/app/store/prompt";
 import { RenderPromptType } from "@/app/components/chat/ds";
-import { useSubmitHandler } from "@/app/hooks/use-submit-handler";
+import { useDebouncedCallback } from "use-debounce";
+import { ChatCommandPrefix, useChatCommand, useCommand } from "@/app/command";
+import { LAST_INPUT_KEY, Path, REQUEST_TIMEOUT_MS } from "@/app/constant";
+import { ChatControllerPool } from "@/app/client/controller";
+import { prettyObject } from "@/app/utils/format";
+import { showPrompt, showToast } from "@/app/components/ui-lib";
+import Locale from "@/app/locales";
+import { getClientConfig } from "@/app/config/client";
+import styles from "@/app/components/chat/chat.module.scss";
+import { IconButton } from "@/app/components/button";
+import ReturnIcon from "@/app/icons/return.svg";
+import RenameIcon from "@/app/icons/rename.svg";
+import EditIcon from "@/app/icons/rename.svg";
+import ExportIcon from "@/app/icons/share.svg";
+import MinIcon from "@/app/icons/min.svg";
+import MaxIcon from "@/app/icons/max.svg";
 import { PromptHints, PromptToast } from "@/app/components/chat/prompt";
+import { Avatar } from "@/app/components/emoji";
+import { MaskAvatar } from "@/app/components/mask";
+import { ChatAction, ChatActions } from "@/app/components/chat/action";
+import StopIcon from "@/app/icons/pause.svg";
+import ResetIcon from "@/app/icons/reload.svg";
+import DeleteIcon from "@/app/icons/clear.svg";
+import PinIcon from "@/app/icons/pin.svg";
+import CopyIcon from "@/app/icons/copy.svg";
+import { Markdown } from "@/app/components/chat/markdown";
 import { ClearContextDivider } from "@/app/components/chat/clear-context-divider";
+import SendWhiteIcon from "@/app/icons/send-white.svg";
+import { ExportMessageModal } from "@/app/components/exporter";
+import { SwitchTheme } from "@/app/components/theme";
+import { Separator } from "@/app/components/ui/separator";
 
 export function Chat() {
   type RenderMessage = ChatMessage & { preview?: boolean };
@@ -423,7 +419,7 @@ export function Chat() {
     <div className={styles.chat} key={session.id}>
       <div className="window-header" data-tauri-drag-region>
         {isMobileScreen && (
-          <div className="window-actions">
+          <div className="inline-flex">
             <div className={"window-action-button"}>
               <IconButton
                 icon={<ReturnIcon />}
@@ -446,7 +442,8 @@ export function Chat() {
             {Locale.Chat.SubTitle(session.messages.length)}
           </div>
         </div>
-        <div className="window-actions">
+
+        <div className="inline-flex space-x-2 h-8 items-center justify-center">
           {!isMobileScreen && (
             <div className="window-action-button">
               <IconButton
@@ -456,6 +453,7 @@ export function Chat() {
               />
             </div>
           )}
+
           <div className="window-action-button">
             <IconButton
               icon={<ExportIcon />}
@@ -466,6 +464,13 @@ export function Chat() {
               }}
             />
           </div>
+
+          <Separator orientation={"vertical"} className={"bg-muted"} />
+
+          <div className="window-action-button">
+            <SwitchTheme />
+          </div>
+
           {showMaxIcon && (
             <div className="window-action-button">
               <IconButton

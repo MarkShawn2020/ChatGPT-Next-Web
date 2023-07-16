@@ -28,6 +28,7 @@ import { AuthPage } from "./auth";
 import { getClientConfig } from "../config/client";
 import { api } from "../client/api";
 import { useAccessStore } from "../store";
+import { Chat as Chat1 } from "@/app/components/chat";
 
 require("../polyfill");
 
@@ -44,7 +45,7 @@ const Settings = dynamic(async () => Settings1, {
   loading: () => <Loading noLogo />,
 });
 
-const Chat = dynamic(async () => (await import("./chat")).Chat, {
+const Chat = dynamic(async () => Chat1, {
   loading: () => <Loading noLogo />,
 });
 

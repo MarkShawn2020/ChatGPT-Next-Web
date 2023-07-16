@@ -1,6 +1,6 @@
 import { RenderPromptType } from "@/app/components/chat/ds";
 import React, { useEffect, useRef, useState } from "react";
-import styles from "@/app/components/chat.module.scss";
+import styles from "@/app/components/chat/chat.module.scss";
 import { useChatStore } from "@/app/store";
 import BrainIcon from "@/app/icons/brain.svg";
 import Locale from "@/app/locales";

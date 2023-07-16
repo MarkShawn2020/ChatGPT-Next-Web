@@ -30,6 +30,7 @@ const cn = {
       PinToastAction: "查看",
       Delete: "删除",
       Edit: "编辑",
+      Theme: "切换主题",
     },
     Commands: {
       new: "新建聊天",

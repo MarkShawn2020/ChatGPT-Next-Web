@@ -1,5 +1,5 @@
 import React, { useMemo, useRef, useState } from "react";
-import styles from "@/app/components/chat.module.scss";
+import styles from "@/app/components/chat/chat.module.scss";
 import { ModelType, useAppConfig, useChatStore } from "@/app/store";
 import { useNavigate } from "react-router-dom";
 import { ChatControllerPool } from "@/app/client/controller";

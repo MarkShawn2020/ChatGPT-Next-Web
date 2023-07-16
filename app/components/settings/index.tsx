@@ -83,7 +83,7 @@ export function Settings() {
             {Locale.Settings.SubTitle}
           </div>
         </div>
-        <div className="window-actions">
+        <div className="inline-flex">
           <div className="window-action-button"></div>
           <div className="window-action-button"></div>
           <div className="window-action-button">
