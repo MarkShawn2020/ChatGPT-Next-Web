@@ -13,9 +13,9 @@ import { Mask, useMaskStore } from "../store/mask";
 import Locale from "../locales";
 import { useAppConfig, useChatStore } from "../store";
 import { MaskAvatar } from "./mask";
-import { useCommand } from "../command";
 import { showConfirm } from "./ui-lib";
 import { BUILTIN_MASK_STORE } from "../masks";
+import { useCommand } from "@/app/hooks/use-command";
 
 function getIntersectionArea(aRect: DOMRect, bRect: DOMRect) {
   const xmin = Math.max(aRect.x, bRect.x);

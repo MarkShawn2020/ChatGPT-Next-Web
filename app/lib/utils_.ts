@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { showToast } from "./components/ui-lib";
-import Locale from "./locales";
+import { showToast } from "../components/ui-lib";
+import Locale from "../locales";
 
 export function trimTopic(topic: string) {
   return topic.replace(/[，。！？”“"、,.!?]*$/, "");
@@ -97,6 +97,7 @@ export function useWindowSize() {
 }
 
 export const MOBILE_MAX_WIDTH = 600;
+
 export function useMobileScreen() {
   const { width } = useWindowSize();
 

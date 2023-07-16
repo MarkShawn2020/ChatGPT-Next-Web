@@ -5,19 +5,19 @@ import "./styles/highlight.scss";
 import { getClientConfig } from "./config/client";
 
 export const metadata = {
-  title: "ChatGPT Next Web",
-  description: "Your personal ChatGPT Chat Bot.",
+  title: "CS魔法社",
+  description: "CS魔法社是一个AIGC社区",
   viewport: {
     width: "device-width",
     initialScale: 1,
     maximumScale: 1,
   },
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#fafafa" },
-    { media: "(prefers-color-scheme: dark)", color: "#151515" },
+    // { media: "(prefers-color-scheme: light)", color: "#fafafa" },
+    // { media: "(prefers-color-scheme: dark)", color: "#151515" },
   ],
   appleWebApp: {
-    title: "ChatGPT Next Web",
+    title: "CS魔法社（App）",
     statusBarStyle: "default",
   },
 };
@@ -28,7 +28,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="zh">
       <head>
         <meta name="config" content={JSON.stringify(getClientConfig())} />
         <link rel="manifest" href="/site.webmanifest"></link>

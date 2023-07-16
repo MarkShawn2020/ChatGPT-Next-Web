@@ -36,8 +36,8 @@ import { useNavigate } from "react-router-dom";
 
 import chatStyle from "./chat/chat.module.scss";
 import { useEffect, useState } from "react";
-import { copyToClipboard, downloadAs, readFromFile } from "../utils";
-import { Updater } from "../typing";
+import { copyToClipboard, downloadAs, readFromFile } from "../lib/utils_";
+import { Updater } from "../typings/typing";
 import { ModelConfigList } from "./model-config";
 import { FileName, Path } from "../constant";
 import { BUILTIN_MASK_STORE } from "../masks";

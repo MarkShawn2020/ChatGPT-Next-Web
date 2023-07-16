@@ -15,12 +15,11 @@ import {
   copyToClipboard,
   selectOrCopy,
   useMobileScreen,
-} from "@/app/utils";
+} from "@/app/lib/utils_";
 import { useLocation, useNavigate } from "react-router-dom";
 import { usePromptStore } from "@/app/store/prompt";
 import { RenderPromptType } from "@/app/components/chat/ds";
 import { useDebouncedCallback } from "use-debounce";
-import { ChatCommandPrefix, useChatCommand, useCommand } from "@/app/command";
 import { LAST_INPUT_KEY, Path, REQUEST_TIMEOUT_MS } from "@/app/constant";
 import { ChatControllerPool } from "@/app/client/controller";
 import { prettyObject } from "@/app/utils/format";
@@ -52,6 +51,11 @@ import { SwitchTheme } from "@/app/components/switchers/switch-theme";
 import { Separator } from "@/app/components/ui/separator";
 import { SwitchLang } from "@/app/components/switchers/switch-lang";
 import { SwitcherScenarioType } from "@/app/components/switchers/ds";
+import { useCommand } from "@/app/hooks/use-command";
+import {
+  ChatCommandPrefix,
+  useChatCommand,
+} from "@/app/hooks/use-chat-command";
 
 export function Chat() {
   type RenderMessage = ChatMessage & { preview?: boolean };
@@ -471,9 +475,7 @@ export function Chat() {
 
           <SwitchLang scenario={SwitcherScenarioType.windowAction} />
 
-          <div className="window-action-button">
-            <SwitchTheme />
-          </div>
+          <SwitchTheme />
 
           {showMaxIcon && (
             <div className="window-action-button">

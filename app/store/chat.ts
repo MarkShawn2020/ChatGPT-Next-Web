@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
-import { trimTopic } from "../utils";
+import { trimTopic } from "../lib/utils_";
 
 import Locale, { getLang } from "../locales";
 import { showToast } from "../components/ui-lib";

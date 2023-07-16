@@ -11,7 +11,7 @@ import {
   showToast,
 } from "./ui-lib";
 import { IconButton } from "./button";
-import { copyToClipboard, downloadAs, useMobileScreen } from "../utils";
+import { copyToClipboard, downloadAs, useMobileScreen } from "../lib/utils_";
 
 import CopyIcon from "../icons/copy.svg";
 import LoadingIcon from "../icons/three-dots.svg";
@@ -26,14 +26,15 @@ import { Avatar } from "./emoji";
 import dynamic from "next/dynamic";
 import NextImage from "next/image";
 
-import { toBlob, toJpeg, toPng } from "html-to-image";
+import { toBlob, toPng } from "html-to-image";
 import { DEFAULT_MASK_AVATAR } from "../store/mask";
 import { api } from "../client/api";
 import { prettyObject } from "../utils/format";
 import { EXPORT_MESSAGE_CLASS_NAME } from "../constant";
 import { getClientConfig } from "../config/client";
+import { Markdown as Markdown1 } from "@/app/components/typography";
 
-const Markdown = dynamic(async () => (await import("./markdown")).Markdown, {
+const Markdown = dynamic(async () => Markdown1, {
   loading: () => <LoadingIcon />,
 });
 

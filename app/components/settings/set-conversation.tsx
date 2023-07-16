@@ -12,7 +12,7 @@ import AddIcon from "@/app/icons/add.svg";
 import ClearIcon from "@/app/icons/clear.svg";
 import EyeIcon from "@/app/icons/eye.svg";
 import CopyIcon from "@/app/icons/copy.svg";
-import { copyToClipboard } from "@/app/utils";
+import { copyToClipboard } from "@/app/lib/utils_";
 import { Switch } from "@/app/components/ui/switch";
 
 export const SetConversation = () => {

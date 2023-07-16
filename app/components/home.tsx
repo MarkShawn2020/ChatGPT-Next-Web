@@ -1,14 +1,11 @@
 "use client";
 
 import { Settings as Settings1 } from "@/app/components/settings";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 import styles from "./home.module.scss";
 
-import BotIcon from "../../public/logo/44.svg";
-import LoadingIcon from "../icons/three-dots.svg";
-
-import { getCSSVar, useMobileScreen } from "../utils";
+import { useMobileScreen } from "../lib/utils_";
 
 import dynamic from "next/dynamic";
 import { Path, SlotID } from "../constant";
@@ -23,93 +20,34 @@ import {
   useLocation,
 } from "react-router-dom";
 import { SideBar } from "./sidebar";
-import { useAppConfig } from "../store/config";
+import { useAppConfig } from "@/app/store";
 import { AuthPage } from "./auth";
 import { getClientConfig } from "../config/client";
-import { api } from "../client/api";
 import { useAccessStore } from "../store";
-import { Chat as Chat1 } from "@/app/components/chat";
+import { Chat } from "@/app/components/chat";
+import { useHasHydrated } from "@/app/hooks/use-hydrate";
+import { useLoadData } from "@/app/hooks/use-data";
+import { loadAsyncGoogleFont } from "@/app/lib/font";
+import { Loading } from "@/app/lib/loading";
+import { ThemeProvider } from "next-themes";
 
-require("../polyfill");
+require("../utils/polyfill");
 
-export function Loading(props: { noLogo?: boolean }) {
-  return (
-    <div className={styles["loading-content"] + " no-dark"}>
-      {!props.noLogo && <BotIcon />}
-      <LoadingIcon />
-    </div>
-  );
-}
-
-const Settings = dynamic(async () => Settings1, {
+const LoadSettings = dynamic(async () => Settings1, {
   loading: () => <Loading noLogo />,
 });
 
-const Chat = dynamic(async () => Chat1, {
+const LoadChat = dynamic(async () => Chat, {
   loading: () => <Loading noLogo />,
 });
 
-const NewChat = dynamic(async () => (await import("./new-chat")).NewChat, {
+const LoadNewChat = dynamic(async () => (await import("./new-chat")).NewChat, {
   loading: () => <Loading noLogo />,
 });
 
-const MaskPage = dynamic(async () => (await import("./mask")).MaskPage, {
+const LoadMaskPage = dynamic(async () => (await import("./mask")).MaskPage, {
   loading: () => <Loading noLogo />,
 });
-
-export function useSwitchTheme() {
-  const config = useAppConfig();
-
-  useEffect(() => {
-    document.body.classList.remove("light");
-    document.body.classList.remove("dark");
-
-    if (config.theme === "dark") {
-      document.body.classList.add("dark");
-    } else if (config.theme === "light") {
-      document.body.classList.add("light");
-    }
-
-    const metaDescriptionDark = document.querySelector(
-      'meta[name="theme-color"][media*="dark"]',
-    );
-    const metaDescriptionLight = document.querySelector(
-      'meta[name="theme-color"][media*="light"]',
-    );
-
-    if (config.theme === "auto") {
-      metaDescriptionDark?.setAttribute("content", "#151515");
-      metaDescriptionLight?.setAttribute("content", "#fafafa");
-    } else {
-      const themeColor = getCSSVar("--theme-color");
-      metaDescriptionDark?.setAttribute("content", themeColor);
-      metaDescriptionLight?.setAttribute("content", themeColor);
-    }
-  }, [config.theme]);
-}
-
-const useHasHydrated = () => {
-  const [hasHydrated, setHasHydrated] = useState<boolean>(false);
-
-  useEffect(() => {
-    setHasHydrated(true);
-  }, []);
-
-  return hasHydrated;
-};
-
-const loadAsyncGoogleFont = () => {
-  const linkEl = document.createElement("link");
-  const proxyFontUrl = "/google-fonts";
-  const remoteFontUrl = "https://fonts.googleapis.com";
-  const googleFontUrl =
-    getClientConfig()?.buildMode === "export" ? remoteFontUrl : proxyFontUrl;
-  linkEl.rel = "stylesheet";
-  linkEl.href =
-    googleFontUrl +
-    "/css2?family=Noto+Sans+SC:wght@300;400;700;900&display=swap";
-  document.head.appendChild(linkEl);
-};
 
 function Screen() {
   const config = useAppConfig();
@@ -143,11 +81,11 @@ function Screen() {
 
           <div className={styles["window-content"]} id={SlotID.AppBody}>
             <Routes>
-              <Route path={Path.Home} element={<Chat />} />
-              <Route path={Path.NewChat} element={<NewChat />} />
-              <Route path={Path.Masks} element={<MaskPage />} />
-              <Route path={Path.Chat} element={<Chat />} />
-              <Route path={Path.Settings} element={<Settings />} />
+              <Route path={Path.Home} element={<LoadChat />} />
+              <Route path={Path.NewChat} element={<LoadNewChat />} />
+              <Route path={Path.Masks} element={<LoadMaskPage />} />
+              <Route path={Path.Chat} element={<LoadChat />} />
+              <Route path={Path.Settings} element={<LoadSettings />} />
             </Routes>
           </div>
         </>
@@ -156,20 +94,8 @@ function Screen() {
   );
 }
 
-export function useLoadData() {
-  const config = useAppConfig();
-
-  useEffect(() => {
-    (async () => {
-      const models = await api.llm.models();
-      config.mergeModels(models);
-    })();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-}
-
 export function Home() {
-  useSwitchTheme();
+  // useSwitchTheme()
   useLoadData();
 
   useEffect(() => {
@@ -184,7 +110,9 @@ export function Home() {
   return (
     <ErrorBoundary>
       <Router>
-        <Screen />
+        <ThemeProvider attribute={"class"}>
+          <Screen />
+        </ThemeProvider>
       </Router>
     </ErrorBoundary>
   );

@@ -90,16 +90,6 @@
   --color-danger-fg: #f85149;
 }
 
-.markdown-body {
-  -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
-  margin: 0;
-  color: var(--color-fg-default);
-  background-color: var(--color-canvas-default);
-  font-size: 14px;
-  line-height: 1.5;
-  word-wrap: break-word;
-}
 
 .light {
   @include light;
@@ -109,14 +99,27 @@
   @include dark;
 }
 
-:root {
-  @include light;
-}
+// 使用 class 手动切换主题时，不要用下面的，会出bug，比如明明是暗色，却显示亮色
+//
+//:root {
+//  @include light;
+//}
+//
+//@media (prefers-color-scheme: dark) {
+//  :root {
+//    @include dark;
+//  }
+//}
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    @include dark;
-  }
+.markdown-body {
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  margin: 0;
+  color: var(--color-fg-default);
+  background-color: var(--color-canvas-default);
+  font-size: 14px;
+  line-height: 1.5;
+  word-wrap: break-word;
 }
 
 .markdown-body .octicon {
@@ -359,7 +362,7 @@
   display: inline-block;
   padding: 3px 5px;
   font: 11px ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas,
-    Liberation Mono, monospace;
+  Liberation Mono, monospace;
   line-height: 10px;
   color: var(--color-fg-default);
   vertical-align: middle;
@@ -449,7 +452,7 @@
 .markdown-body code,
 .markdown-body samp {
   font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas,
-    Liberation Mono, monospace;
+  Liberation Mono, monospace;
   font-size: 12px;
 }
 
@@ -457,7 +460,7 @@
   margin-top: 0;
   margin-bottom: 0;
   font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas,
-    Liberation Mono, monospace;
+  Liberation Mono, monospace;
   font-size: 12px;
   word-wrap: normal;
 }
@@ -1106,8 +1109,8 @@
 
 .markdown-body .contains-task-list:hover .task-list-item-convert-container,
 .markdown-body
-  .contains-task-list:focus-within
-  .task-list-item-convert-container {
+.contains-task-list:focus-within
+.task-list-item-convert-container {
   display: block;
   width: auto;
   height: 24px;

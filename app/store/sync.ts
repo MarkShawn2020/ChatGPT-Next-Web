@@ -1,4 +1,4 @@
-import { Updater } from "../typing";
+import { Updater } from "../typings/typing";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { StoreKey } from "../constant";

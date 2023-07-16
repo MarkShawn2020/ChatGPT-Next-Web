@@ -25,7 +25,7 @@ import {
 } from "../constant";
 
 import { Link, useNavigate } from "react-router-dom";
-import { useMobileScreen } from "../utils";
+import { useMobileScreen } from "../lib/utils_";
 import dynamic from "next/dynamic";
 import { showConfirm, showToast } from "./ui-lib";
 import Image from "next/image";
