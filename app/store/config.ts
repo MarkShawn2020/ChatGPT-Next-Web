@@ -2,9 +2,8 @@ import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { LLMModel } from "../client/api";
 import { getClientConfig } from "../config/client";
-import { DEFAULT_INPUT_TEMPLATE, DEFAULT_MODELS, StoreKey } from "../constant";
-
-export type ModelType = (typeof DEFAULT_MODELS)[number]["name"];
+import { DEFAULT_INPUT_TEMPLATE, StoreKey } from "../constant";
+import { DEFAULT_MODELS, ModelType } from "@/app/ds/message";
 
 export enum SubmitKey {
   Enter = "Enter",

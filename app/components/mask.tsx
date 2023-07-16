@@ -14,13 +14,11 @@ import CopyIcon from "../icons/copy.svg";
 
 import { DEFAULT_MASK_AVATAR, Mask, useMaskStore } from "../store/mask";
 import {
-  ChatMessage,
   createMessage,
   ModelConfig,
   useAppConfig,
   useChatStore,
 } from "../store";
-import { ROLES } from "../client/api";
 import {
   Input,
   List,
@@ -43,6 +41,7 @@ import { FileName, Path } from "../constant";
 import { BUILTIN_MASK_STORE } from "../masks";
 import { nanoid } from "nanoid";
 import { Button } from "@/app/components/ui/button";
+import { ChatMessage, ROLES } from "@/app/ds/message";
 
 export function MaskAvatar(props: { mask: Mask }) {
   return props.mask.avatar !== DEFAULT_MASK_AVATAR ? (
@@ -291,7 +290,6 @@ export function ContextPrompts(props: {
                 createMessage({
                   role: "user",
                   content: "",
-                  date: "",
                 }),
               )
             }

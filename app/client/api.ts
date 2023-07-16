@@ -1,18 +1,8 @@
 import { getClientConfig } from "../config/client";
 import { ACCESS_CODE_PREFIX } from "../constant";
-import { ChatMessage, ModelType, useAccessStore } from "../store";
+import { useAccessStore } from "../store";
 import { ChatGPTApi } from "./platforms/openai";
-
-export const ROLES = ["system", "user", "assistant"] as const;
-export type MessageRole = (typeof ROLES)[number];
-
-export const Models = ["gpt-3.5-turbo", "gpt-4"] as const;
-export type ChatModel = ModelType;
-
-export interface RequestMessage {
-  role: MessageRole;
-  content: string;
-}
+import { ChatMessage, RequestMessage } from "@/app/ds/message";
 
 export interface LLMConfig {
   model: string;
@@ -45,7 +35,9 @@ export interface LLMModel {
 
 export abstract class LLMApi {
   abstract chat(options: ChatOptions): Promise<void>;
+
   abstract usage(): Promise<LLMUsage>;
+
   abstract models(): Promise<LLMModel[]>;
 }
 

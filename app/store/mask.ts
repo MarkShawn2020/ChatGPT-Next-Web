@@ -2,10 +2,11 @@ import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { BUILTIN_MASKS } from "../masks";
 import { getLang, Lang } from "../locales";
-import { DEFAULT_TOPIC, ChatMessage } from "./chat";
+import { DEFAULT_TOPIC } from "./chat";
 import { ModelConfig, useAppConfig } from "./config";
 import { StoreKey } from "../constant";
 import { nanoid } from "nanoid";
+import { ChatMessage } from "@/app/ds/message";
 
 export type Mask = {
   id: string;

@@ -1,6 +1,5 @@
 import {
   BOT_HELLO,
-  ChatMessage,
   createMessage,
   DEFAULT_TOPIC,
   useAccessStore,
@@ -46,7 +45,6 @@ import CopyIcon from "@/app/icons/copy.svg";
 import { Markdown } from "@/app/components/chat/markdown";
 import { ClearContextDivider } from "@/app/components/chat/clear-context-divider";
 import SendWhiteIcon from "@/app/icons/send-white.svg";
-import { ExportMessageModal } from "@/app/components/exporter";
 import { SwitchTheme } from "@/app/components/switchers/switch-theme";
 import { Separator } from "@/app/components/ui/separator";
 import { SwitchLang } from "@/app/components/switchers/switch-lang";
@@ -56,6 +54,8 @@ import {
   ChatCommandPrefix,
   useChatCommand,
 } from "@/app/hooks/use-chat-command";
+import { ExportMessageModal } from "@/app/components/chat/export/export-message-modal";
+import { ChatMessage } from "@/app/ds/message";
 
 export function Chat() {
   type RenderMessage = ChatMessage & { preview?: boolean };
@@ -195,7 +195,10 @@ export function Chat() {
       const stopTiming = Date.now() - REQUEST_TIMEOUT_MS;
       session.messages.forEach((m) => {
         // check if should stop all stale messages
-        if (m.isError || new Date(m.date).getTime() < stopTiming) {
+        if (
+          m.isError ||
+          new Date(m.date ?? new Date()).getTime() < stopTiming
+        ) {
           if (m.streaming) {
             m.streaming = false;
           }
@@ -623,7 +626,7 @@ export function Chat() {
                   <div className={styles["chat-message-action-date"]}>
                     {isContext
                       ? Locale.Chat.IsContext
-                      : message.date.toLocaleString()}
+                      : (message.date ?? new Date()).toLocaleString()}
                   </div>
                 </div>
               </div>

@@ -1,6 +1,6 @@
 import React, { useMemo, useRef, useState } from "react";
 import styles from "@/app/components/chat/chat.module.scss";
-import { ModelType, useAppConfig, useChatStore } from "@/app/store";
+import { useAppConfig, useChatStore } from "@/app/store";
 import { useNavigate } from "react-router-dom";
 import { ChatControllerPool } from "@/app/client/controller";
 import Locale from "@/app/locales";
@@ -13,6 +13,7 @@ import MaskIcon from "@/app/icons/mask.svg";
 import BreakIcon from "@/app/icons/break.svg";
 import RobotIcon from "@/app/icons/robot.svg";
 import { Selector, showToast } from "@/app/components/ui-lib";
+import { ModelType } from "@/app/ds/message";
 
 export function ChatAction(props: {
   text: string;

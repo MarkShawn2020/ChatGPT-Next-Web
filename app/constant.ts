@@ -1,5 +1,7 @@
-export const OWNER = "MarkShawn2020"; // "Yidadaa";
-export const REPO = "ChatGPT-Next-Web";
+import { settings } from "@/app/settings";
+
+export const OWNER = settings.coding.repo.github.username; // "Yidadaa";
+export const REPO = settings.coding.repo.github.repo;
 export const REPO_URL = `https://github.com/${OWNER}/${REPO}`;
 export const ISSUE_URL = `https://github.com/${OWNER}/${REPO}/issues`;
 export const UPDATE_URL = `${REPO_URL}#keep-updated`;
@@ -64,50 +66,3 @@ You are ChatGPT, a large language model trained by OpenAI.
 Knowledge cutoff: 2021-09
 Current model: {{model}}
 Current time: {{time}}`;
-
-export const DEFAULT_MODELS = [
-  {
-    name: "gpt-4",
-    available: true,
-  },
-  {
-    name: "gpt-4-0314",
-    available: true,
-  },
-  {
-    name: "gpt-4-0613",
-    available: true,
-  },
-  {
-    name: "gpt-4-32k",
-    available: true,
-  },
-  {
-    name: "gpt-4-32k-0314",
-    available: true,
-  },
-  {
-    name: "gpt-4-32k-0613",
-    available: true,
-  },
-  {
-    name: "gpt-3.5-turbo",
-    available: true,
-  },
-  {
-    name: "gpt-3.5-turbo-0301",
-    available: true,
-  },
-  {
-    name: "gpt-3.5-turbo-0613",
-    available: true,
-  },
-  {
-    name: "gpt-3.5-turbo-16k",
-    available: true,
-  },
-  {
-    name: "gpt-3.5-turbo-16k-0613",
-    available: true,
-  },
-] as const;

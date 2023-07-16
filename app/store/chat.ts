@@ -5,31 +5,23 @@ import { trimTopic } from "../lib/utils_";
 
 import Locale, { getLang } from "../locales";
 import { showToast } from "../components/ui-lib";
-import { ModelConfig, ModelType, useAppConfig } from "./config";
+import { ModelConfig, useAppConfig } from "./config";
 import { createEmptyMask, Mask } from "./mask";
 import {
   DEFAULT_INPUT_TEMPLATE,
   DEFAULT_SYSTEM_TEMPLATE,
   StoreKey,
 } from "../constant";
-import { api, RequestMessage } from "../client/api";
+import { api } from "../client/api";
 import { ChatControllerPool } from "../client/controller";
 import { prettyObject } from "../utils/format";
 import { estimateTokenLength } from "../utils/token";
 import { nanoid } from "nanoid";
-
-export type ChatMessage = RequestMessage & {
-  date: string;
-  streaming?: boolean;
-  isError?: boolean;
-  id: string;
-  model?: ModelType;
-};
+import { ChatMessage } from "@/app/ds/message";
 
 export function createMessage(override: Partial<ChatMessage>): ChatMessage {
   return {
     id: nanoid(),
-    date: new Date().toLocaleString(),
     role: "user",
     content: "",
     ...override,
@@ -371,7 +363,6 @@ export const useChatStore = create<ChatStore>()(
             session.memoryPrompt.length > 0
               ? Locale.Store.Prompt.History(session.memoryPrompt)
               : "",
-          date: "",
         } as ChatMessage;
       },
 
@@ -550,7 +541,6 @@ export const useChatStore = create<ChatStore>()(
               createMessage({
                 role: "system",
                 content: Locale.Store.Prompt.Summarize,
-                date: "",
               }),
             ),
             config: { ...modelConfig, stream: true },

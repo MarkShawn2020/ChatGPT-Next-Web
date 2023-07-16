@@ -1,6 +1,5 @@
 import {
   DEFAULT_API_HOST,
-  DEFAULT_MODELS,
   OpenaiPath,
   REQUEST_TIMEOUT_MS,
 } from "@/app/constant";
@@ -13,6 +12,7 @@ import {
   fetchEventSource,
 } from "@fortaine/fetch-event-source";
 import { prettyObject } from "@/app/utils/format";
+import { DEFAULT_MODELS } from "@/app/ds/message";
 
 export interface OpenAIListModelResponse {
   object: string;
@@ -182,6 +182,7 @@ export class ChatGPTApi implements LLMApi {
       options.onError?.(e as Error);
     }
   }
+
   async usage() {
     const formatDate = (d: Date) =>
       `${d.getFullYear()}-${(d.getMonth() + 1).toString().padStart(2, "0")}-${d
@@ -274,4 +275,5 @@ export class ChatGPTApi implements LLMApi {
     }));
   }
 }
+
 export { OpenaiPath };

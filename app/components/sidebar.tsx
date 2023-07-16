@@ -5,7 +5,6 @@ import styles from "./home.module.scss";
 import { IconButton } from "./button";
 import SettingsIcon from "../icons/settings.svg";
 import GithubIcon from "../icons/github.svg";
-import ChatGptIcon from "../icons/chatgpt.svg";
 import AddIcon from "../icons/add.svg";
 import CloseIcon from "../icons/close.svg";
 import MaskIcon from "../icons/mask.svg";
@@ -28,7 +27,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useMobileScreen } from "../lib/utils_";
 import dynamic from "next/dynamic";
 import { showConfirm, showToast } from "./ui-lib";
-import Image from "next/image";
+import { settings } from "@/app/settings";
 
 const ChatList = dynamic(async () => (await import("./chat-list")).ChatList, {
   loading: () => null,
@@ -119,11 +118,12 @@ export function SideBar(props: { className?: string }) {
     >
       <div className={styles["sidebar-header"]} data-tauri-drag-region>
         <div className={styles["sidebar-title"]} data-tauri-drag-region>
-          CS魔法社
+          {settings.product.name}
         </div>
-        <div className={styles["sidebar-sub-title"]}>释放无限AI魔力</div>
+        <div className={styles["sidebar-sub-title"]}>
+          {settings.product.desc}
+        </div>
         <div className={styles["sidebar-logo"] + " no-dark"}>
-          {/*<ChatGptIcon/>*/}
           <CSMagicLogoIcon />
         </div>
       </div>

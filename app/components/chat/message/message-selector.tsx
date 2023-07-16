@@ -1,68 +1,14 @@
 import { useEffect, useState } from "react";
-import { ChatMessage, useAppConfig, useChatStore } from "../store";
-import { Updater } from "../typings/typing";
-import { IconButton } from "./button";
-import { Avatar } from "./emoji";
-import { MaskAvatar } from "./mask";
-import Locale from "../locales";
+import { useAppConfig, useChatStore } from "../../../store";
+import { Updater } from "../../../typings/typing";
+import { IconButton } from "../../button";
+import { Avatar } from "../../emoji";
+import { MaskAvatar } from "../../mask";
+import Locale from "../../../locales";
 
 import styles from "./message-selector.module.scss";
-
-function useShiftRange() {
-  const [startIndex, setStartIndex] = useState<number>();
-  const [endIndex, setEndIndex] = useState<number>();
-  const [shiftDown, setShiftDown] = useState(false);
-
-  const onClickIndex = (index: number) => {
-    if (shiftDown && startIndex !== undefined) {
-      setEndIndex(index);
-    } else {
-      setStartIndex(index);
-      setEndIndex(undefined);
-    }
-  };
-
-  useEffect(() => {
-    const onKeyDown = (e: KeyboardEvent) => {
-      if (e.key !== "Shift") return;
-      setShiftDown(true);
-    };
-    const onKeyUp = (e: KeyboardEvent) => {
-      if (e.key !== "Shift") return;
-      setShiftDown(false);
-      setStartIndex(undefined);
-      setEndIndex(undefined);
-    };
-
-    window.addEventListener("keyup", onKeyUp);
-    window.addEventListener("keydown", onKeyDown);
-
-    return () => {
-      window.removeEventListener("keyup", onKeyUp);
-      window.removeEventListener("keydown", onKeyDown);
-    };
-  }, []);
-
-  return {
-    onClickIndex,
-    startIndex,
-    endIndex,
-  };
-}
-
-export function useMessageSelector() {
-  const [selection, setSelection] = useState(new Set<string>());
-  const updateSelection: Updater<Set<string>> = (updater) => {
-    const newSelection = new Set<string>(selection);
-    updater(newSelection);
-    setSelection(newSelection);
-  };
-
-  return {
-    selection,
-    updateSelection,
-  };
-}
+import { useShiftRange } from "@/app/hooks/use-messages";
+import { ChatMessage } from "@/app/ds/message";
 
 export function MessageSelector(props: {
   selection: Set<string>;
@@ -200,7 +146,7 @@ export function MessageSelector(props: {
               </div>
               <div className={styles["body"]}>
                 <div className={styles["date"]}>
-                  {new Date(m.date).toLocaleString()}
+                  {new Date(m.date ?? new Date()).toLocaleString()}
                 </div>
                 <div className={`${styles["content"]} one-line`}>
                   {m.content}

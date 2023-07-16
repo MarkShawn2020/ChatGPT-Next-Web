@@ -25,7 +25,7 @@ export const SwitchTheme = () => {
     [Theme.Dark]: <DarkIcon />,
   }[theme];
 
-  console.log({ theme });
+  // console.log({ theme });
 
   return (
     <div className="window-action-button">
