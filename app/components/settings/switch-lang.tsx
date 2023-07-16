@@ -1,7 +1,6 @@
 import { IconLanguage } from "@tabler/icons-react";
 import { ALL_LANG_OPTIONS, AllLangs, changeLang, Lang } from "@/app/locales";
 import React from "react";
-import { SwitcherScenarioType } from "@/app/components/switchers/ds";
 import { SelectTrigger } from "@radix-ui/react-select";
 import {
   Select,
@@ -10,14 +9,11 @@ import {
   SelectItem,
   SelectSeparator,
 } from "../ui/select";
+import { ScenarioType } from "@/app/ds/scenario";
 
-export const SwitchLang = ({
-  scenario,
-}: {
-  scenario: SwitcherScenarioType;
-}) => {
+export const SwitchLang = ({ scenario }: { scenario: ScenarioType }) => {
   switch (scenario) {
-    case SwitcherScenarioType.windowAction:
+    case ScenarioType.windowAction:
       return (
         <Select
           onValueChange={(v: Lang) => {

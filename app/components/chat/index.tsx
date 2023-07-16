@@ -45,10 +45,9 @@ import CopyIcon from "@/app/icons/copy.svg";
 import { Markdown } from "@/app/components/chat/markdown";
 import { ClearContextDivider } from "@/app/components/chat/clear-context-divider";
 import SendWhiteIcon from "@/app/icons/send-white.svg";
-import { SwitchTheme } from "@/app/components/switchers/switch-theme";
+import { SwitchTheme } from "@/app/components/settings/switch-theme";
 import { Separator } from "@/app/components/ui/separator";
-import { SwitchLang } from "@/app/components/switchers/switch-lang";
-import { SwitcherScenarioType } from "@/app/components/switchers/ds";
+import { SwitchLang } from "@/app/components/settings/switch-lang";
 import { useCommand } from "@/app/hooks/use-command";
 import {
   ChatCommandPrefix,
@@ -56,6 +55,7 @@ import {
 } from "@/app/hooks/use-chat-command";
 import { ExportMessageModal } from "@/app/components/chat/export/export-message-modal";
 import { ChatMessage } from "@/app/ds/message";
+import { ScenarioType } from "@/app/ds/scenario";
 
 export function Chat() {
   type RenderMessage = ChatMessage & { preview?: boolean };
@@ -476,7 +476,7 @@ export function Chat() {
 
           <Separator orientation={"vertical"} className={"bg-muted"} />
 
-          <SwitchLang scenario={SwitcherScenarioType.windowAction} />
+          <SwitchLang scenario={ScenarioType.windowAction} />
 
           <SwitchTheme />
 
