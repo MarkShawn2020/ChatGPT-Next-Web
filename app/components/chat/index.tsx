@@ -17,7 +17,6 @@ import {
 } from "@/app/lib/utils_";
 import { useLocation, useNavigate } from "react-router-dom";
 import { usePromptStore } from "@/app/store/prompt";
-import { RenderPromptType } from "@/app/components/chat/ds";
 import { useDebouncedCallback } from "use-debounce";
 import { LAST_INPUT_KEY, Path, REQUEST_TIMEOUT_MS } from "@/app/constant";
 import { ChatControllerPool } from "@/app/client/controller";
@@ -54,7 +53,7 @@ import {
   useChatCommand,
 } from "@/app/hooks/use-chat-command";
 import { ExportMessageModal } from "@/app/components/chat/export/export-message-modal";
-import { ChatMessage } from "@/app/ds/message";
+import { ChatMessage, RenderPromptType } from "@/app/ds/message";
 import { ScenarioType } from "@/app/ds/scenario";
 
 export function Chat() {

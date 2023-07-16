@@ -1,10 +1,10 @@
-import { RenderPromptType } from "@/app/components/chat/ds";
 import React, { useEffect, useRef, useState } from "react";
 import styles from "@/app/components/chat/chat.module.scss";
 import { useChatStore } from "@/app/store";
 import BrainIcon from "@/app/icons/brain.svg";
 import Locale from "@/app/locales";
 import { SessionConfigModel } from "@/app/components/chat/session-config-model";
+import { RenderPromptType } from "@/app/ds/message";
 
 export function PromptToast(props: {
   showToast?: boolean;

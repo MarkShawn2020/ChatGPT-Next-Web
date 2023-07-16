@@ -19,7 +19,7 @@ import {
   Routes,
   useLocation,
 } from "react-router-dom";
-import { SideBar } from "./sidebar";
+import { SideBar } from "./layout/sidebar";
 import { useAppConfig } from "@/app/store";
 import { AuthPage } from "./auth";
 import { getClientConfig } from "../config/client";

@@ -1,3 +1,5 @@
+import { Prompt } from "@/app/store/prompt";
+
 export const ROLES = ["system", "user", "assistant"] as const;
 export type MessageRole = (typeof ROLES)[number];
 
@@ -62,3 +64,4 @@ export type ChatMessage = RequestMessage & {
   id: string;
   model?: ModelType;
 };
+export type RenderPromptType = Pick<Prompt, "title" | "content">;

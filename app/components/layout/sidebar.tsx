@@ -1,104 +1,33 @@
-import { useEffect, useRef } from "react";
+import styles from "../home.module.scss";
 
-import styles from "./home.module.scss";
+import { IconButton } from "../button";
+import SettingsIcon from "../../icons/settings.svg";
+import GithubIcon from "../../icons/github.svg";
+import AddIcon from "../../icons/add.svg";
+import CloseIcon from "../../icons/close.svg";
+import MaskIcon from "../../icons/mask.svg";
+import PluginIcon from "../../icons/plugin.svg";
+import CSMagicLogoIcon from "../../../public/logo/44.svg";
 
-import { IconButton } from "./button";
-import SettingsIcon from "../icons/settings.svg";
-import GithubIcon from "../icons/github.svg";
-import AddIcon from "../icons/add.svg";
-import CloseIcon from "../icons/close.svg";
-import MaskIcon from "../icons/mask.svg";
-import PluginIcon from "../icons/plugin.svg";
-import CSMagicLogoIcon from "../../public/logo/44.svg";
+import Locale from "../../locales";
 
-import Locale from "../locales";
+import { useAppConfig, useChatStore } from "../../store";
 
-import { useAppConfig, useChatStore } from "../store";
-
-import {
-  MAX_SIDEBAR_WIDTH,
-  MIN_SIDEBAR_WIDTH,
-  NARROW_SIDEBAR_WIDTH,
-  Path,
-  REPO_URL,
-} from "../constant";
+import { Path, REPO_URL } from "../../constant";
 
 import { Link, useNavigate } from "react-router-dom";
-import { useMobileScreen } from "../lib/utils_";
 import dynamic from "next/dynamic";
-import { showConfirm, showToast } from "./ui-lib";
+import { showConfirm, showToast } from "../ui-lib";
 import { settings } from "@/app/settings";
+import { useHotKey } from "@/app/hooks/use-hot-key";
+import { useDragSideBar } from "@/app/hooks/use-drag-sidebar";
 
-const ChatList = dynamic(async () => (await import("./chat-list")).ChatList, {
-  loading: () => null,
-});
-
-function useHotKey() {
-  const chatStore = useChatStore();
-
-  useEffect(() => {
-    const onKeyDown = (e: KeyboardEvent) => {
-      if (e.altKey || e.ctrlKey) {
-        if (e.key === "ArrowUp") {
-          chatStore.nextSession(-1);
-        } else if (e.key === "ArrowDown") {
-          chatStore.nextSession(1);
-        }
-      }
-    };
-
-    window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
-  });
-}
-
-function useDragSideBar() {
-  const limit = (x: number) => Math.min(MAX_SIDEBAR_WIDTH, x);
-
-  const config = useAppConfig();
-  const startX = useRef(0);
-  const startDragWidth = useRef(config.sidebarWidth ?? 300);
-  const lastUpdateTime = useRef(Date.now());
-
-  const handleMouseMove = useRef((e: MouseEvent) => {
-    if (Date.now() < lastUpdateTime.current + 50) {
-      return;
-    }
-    lastUpdateTime.current = Date.now();
-    const d = e.clientX - startX.current;
-    const nextWidth = limit(startDragWidth.current + d);
-    config.update((config) => (config.sidebarWidth = nextWidth));
-  });
-
-  const handleMouseUp = useRef(() => {
-    startDragWidth.current = config.sidebarWidth ?? 300;
-    window.removeEventListener("mousemove", handleMouseMove.current);
-    window.removeEventListener("mouseup", handleMouseUp.current);
-  });
-
-  const onDragMouseDown = (e: MouseEvent) => {
-    startX.current = e.clientX;
-
-    window.addEventListener("mousemove", handleMouseMove.current);
-    window.addEventListener("mouseup", handleMouseUp.current);
-  };
-  const isMobileScreen = useMobileScreen();
-  const shouldNarrow =
-    !isMobileScreen && config.sidebarWidth < MIN_SIDEBAR_WIDTH;
-
-  useEffect(() => {
-    const barWidth = shouldNarrow
-      ? NARROW_SIDEBAR_WIDTH
-      : limit(config.sidebarWidth ?? 300);
-    const sideBarWidth = isMobileScreen ? "100vw" : `${barWidth}px`;
-    document.documentElement.style.setProperty("--sidebar-width", sideBarWidth);
-  }, [config.sidebarWidth, isMobileScreen, shouldNarrow]);
-
-  return {
-    onDragMouseDown,
-    shouldNarrow,
-  };
-}
+const ChatList = dynamic(
+  async () => (await import("../chat/chat-list")).ChatList,
+  {
+    loading: () => null,
+  },
+);
 
 export function SideBar(props: { className?: string }) {
   const chatStore = useChatStore();
