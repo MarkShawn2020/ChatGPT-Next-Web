@@ -42,6 +42,7 @@ import { ModelConfigList } from "./model-config";
 import { FileName, Path } from "../constant";
 import { BUILTIN_MASK_STORE } from "../masks";
 import { nanoid } from "nanoid";
+import { Button } from "@/app/components/ui/button";
 
 export function MaskAvatar(props: { mask: Mask }) {
   return props.mask.avatar !== DEFAULT_MASK_AVATAR ? (
@@ -428,16 +429,17 @@ export function MaskPage() {
               ))}
             </Select>
 
-            <IconButton
-              className={styles["mask-create"]}
-              icon={<AddIcon />}
-              text={Locale.Mask.Page.Create}
-              bordered
+            <Button
+              variant={"outline"}
+              className={"h-full box-border rounded-xl gap-2"}
               onClick={() => {
                 const createdMask = maskStore.create();
                 setEditingMaskId(createdMask.id);
               }}
-            />
+            >
+              <AddIcon className={"text-black invert-50"} />
+              {Locale.Mask.Page.Create}
+            </Button>
           </div>
 
           <div>

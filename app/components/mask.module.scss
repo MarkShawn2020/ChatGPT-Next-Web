@@ -17,6 +17,7 @@
       height: 40px;
 
       display: flex;
+      gap: 1%;
 
       .search-bar {
         flex-grow: 1;
@@ -26,7 +27,6 @@
 
       .mask-filter-lang {
         height: 100%;
-        margin-left: 10px;
       }
 
       .mask-create {
