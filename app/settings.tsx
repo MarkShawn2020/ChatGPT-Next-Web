@@ -27,6 +27,11 @@ export interface ISettings {
   }[];
 }
 
+const COMPANY_NAME = "oyo";
+const COMPANY_DESC = "oyo是一个AIGC社区";
+const PRODUCT_NAME = COMPANY_NAME; // 单一产品下保持一致
+const PRODUCT_DESC = COMPANY_DESC;
+
 export const settings: ISettings = {
   coding: {
     repo: {
@@ -37,16 +42,16 @@ export const settings: ISettings = {
     },
   },
   company: {
-    name: "CS魔法社",
-    desc: "CS魔法社是一个AIGC社区",
+    name: COMPANY_NAME,
+    desc: COMPANY_DESC,
     slogan: "释放无限AI魔力",
   },
   product: {
-    name: "CS魔法社",
-    desc: "CS魔法社是一个AIGC社区",
+    name: PRODUCT_NAME,
+    desc: PRODUCT_DESC,
 
     share: {
-      title: "CS魔法社",
+      title: PRODUCT_NAME,
       desc: `source: ${process.env.NEXT_PUBLIC_DOMAIN}`,
     },
   },
