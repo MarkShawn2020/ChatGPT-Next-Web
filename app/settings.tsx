@@ -27,8 +27,8 @@ export interface ISettings {
   }[];
 }
 
-const COMPANY_NAME = "oyo";
-const COMPANY_DESC = "oyo是一个AIGC社区";
+const COMPANY_NAME = "Oyo!";
+const COMPANY_DESC = "释放无限 AI 魔力";
 const PRODUCT_NAME = COMPANY_NAME; // 单一产品下保持一致
 const PRODUCT_DESC = COMPANY_DESC;
 
